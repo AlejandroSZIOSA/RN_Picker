@@ -1,5 +1,5 @@
 import { useState} from "react";
-import { StyleSheet,Text,Modal, TouchableOpacity, SafeAreaView } from "react-native";
+import { StyleSheet,Text,Modal, TouchableOpacity, View } from "react-native";
 import { ModalPicker } from "./components/ModalPicker";
 
 const App = () => {
@@ -13,7 +13,8 @@ const setData = (option)=>{
     setChooseData(option)
 }
   return(
-    <SafeAreaView style={styles.container}>
+    <View style={styles.outsidecontainer}>
+    <View style={styles.container}>
       <TouchableOpacity
         style={styles.TouchableOpacity}
         onPress={()=> changeModalVisibility(true)}
@@ -31,15 +32,16 @@ const setData = (option)=>{
          setData={setData}
         />
       </Modal>
-    </SafeAreaView>
+    </View>
+    </View>
   )
 }
 const styles= StyleSheet.create({
     container:{
-      flex:1,
       backgroundColor: 'green',
-      alignItems:'top',
-      justifyContent:'top',
+      alignItems:'center',
+      justifyContent:'center',
+      marginVertical:100,
       padding:20
     },
     text:{
@@ -50,6 +52,10 @@ const styles= StyleSheet.create({
       backgroundColor:'orange',
       alignSelf:'stretch',
       paddingHorizontal:20
+    },
+    outsidecontainer:{
+      flex:1,
+     
     }
 })
 export default App;

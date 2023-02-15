@@ -2,11 +2,12 @@ import React from "react";
 import { StyleSheet,Text,View,TouchableOpacity,
         Dimensions,ScrollView} from "react-native";
 
-const OPTIONS =['red','blue']
+const OPTIONS =[{state:'Stockholm'},{state:'Malmö'}]
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const ModalPicker = (props) =>{
+
     const onPressItem = (option) =>{
         props.changeModalVisibility(false)
         props.setData(option)
@@ -17,10 +18,10 @@ const ModalPicker = (props) =>{
             <TouchableOpacity
                 style={styles.option}
                 key={index}
-                onPress={()=>onPressItem(item)}
+                onPress={()=>onPressItem(item.state)}
             >
                 <Text style={styles.text}>
-                    {item}
+                    {item.state}
                 </Text>
             </TouchableOpacity>
         )
@@ -34,10 +35,8 @@ const ModalPicker = (props) =>{
                 <ScrollView>
                     {option}
                 </ScrollView>
-
             </View>
         </TouchableOpacity>
-
     )
 }
 const styles = StyleSheet.create({
@@ -58,6 +57,5 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:'bold'
     }
-
 })
 export {ModalPicker}
