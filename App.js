@@ -1,20 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState} from "react";
+import { StyleSheet,Text,View,Modal, TouchableOpacity, SafeAreaView } from "react-native";
+import { ModalPicker } from "./components/ModalPicker";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const App = () => {
+  const [chooseData,setChooseData] = useState('Select item')
+  const [isModalVisible,setisModalVisible] = useState(false)
+
+  const changeModalVisibility = (bool) => {
+    setisModalVisible(bool)
+  }
+const setData = (option)=>{
+    setChooseData(option)
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  return(
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+        style={styles.TouchableOpacity}
+        onPress={()=> changeModalVisibility(true)}
+      >
+        <Text style={styles.text}> {chooseData } </Text>
+      </TouchableOpacity>
+      <Modal
+        transparent={true}
+        animationType='fade'
+        visible={isModalVisible}
+        nRequestClose={()=>changeModalVisibility(false)}
+      >
+        <ModalPicker
+         changeModalVisibility={changeModalVisibility}
+         setData={setData}
+        />
+      </Modal>
+    </SafeAreaView>
+  )
+}
+const styles= StyleSheet.create({
+    container:{
+      flex:1,
+      backgroundColor: 'green',
+      alignItems:'center',
+      justifyContent:'center',
+      padding:20
+    },
+    text:{
+      marginVertical:20,
+      fontSize:25
+    },
+    TouchableOpacity:{
+      backgroundColor:'orange',
+      alignSelf:'stretch',
+      paddingHorizontal:20
+    }
+})
+export default App;
