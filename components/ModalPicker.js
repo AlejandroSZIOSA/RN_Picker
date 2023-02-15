@@ -7,7 +7,6 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const ModalPicker = (props) =>{
-
     const onPressItem = (option) =>{
         props.changeModalVisibility(false)
         props.setData(option)
